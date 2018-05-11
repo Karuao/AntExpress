@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="AntExpress:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="AntExpress.war">
+      <element id="artifact" artifact-name="AntExpress:war exploded" />
+    </root>
+  </artifact>
+</component>
