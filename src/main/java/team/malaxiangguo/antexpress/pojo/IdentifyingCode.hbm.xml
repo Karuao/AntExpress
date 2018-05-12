@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="team.malaxiangguo.antexpress.pojo.IdentifyingCode" table="identifying_code" schema="antexpress">
+        <id name="identifyingCode">
+            <column name="identifying_code" sql-type="int(11)"/>
+        </id>
+        <property name="imgUrl">
+            <column name="img_url" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="value">
+            <column name="value" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="createDateTime">
+            <column name="create_date_time" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="modifyDateTime">
+            <column name="modify_date_time" sql-type="datetime" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
