@@ -11,7 +11,12 @@ public class EmployeeService {
     @Autowired
     EmployeeDao employeeDao;
 
-    public Employee getEmployee(int employeeId) {
+    public Employee[] getEmployee(int employeeId) {
+
         return employeeDao.selectEmployeeById(employeeId);
+    }
+    public boolean getEmployee(String account,String password) {
+
+        return employeeDao.selectEmployeeByInput(account,password);
     }
 }
