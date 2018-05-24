@@ -5,16 +5,7 @@
   Time: 13:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css">
-<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/extensions/editable/bootstrap-table-editable.min.js"></script>
+<%@ include file="/WEB-INF/view/include.jsp"%>
 <html>
 <head>
     <title>Title</title>
@@ -53,7 +44,7 @@
         //初始化Table
         oTableInit.Init = function () {
             $('#tb_employee').bootstrapTable({
-                url: 'http://localhost:8080/employee',         //请求后台的URL（*）
+                url: '<%=contextPath%>/employee',         //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -81,7 +72,7 @@
                     alert(JSON.stringify(row));
                     $.ajax({
                         type:"post",
-                        url:"/edit",
+                        url:"<%=contextPath%>/edit",
                         dataType:"text",
                         contentType :"application/json;charset=utf-8",
                         data:JSON.stringify(row),
