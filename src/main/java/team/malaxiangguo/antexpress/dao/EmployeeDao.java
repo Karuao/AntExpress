@@ -16,28 +16,30 @@ public class EmployeeDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Employee[] selectEmployeeById(int employeeId) {
+    public List<Employee> selectAllEmployee() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Employee employee = session.get(Employee.class, 1);
-        transaction.commit();
-        return new Employee[]{employee};
+        String hql = "from  Employee";
+        return session.createQuery(hql).list();
     }
 
-    public boolean selectEmployeeByInput(String account,String password) {
+    public void deleteEmployeeById(int employeeId) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Employee e = session.get(Employee.class,employeeId);
+        session.delete(e);
+        transaction.commit();
+    }
+
+    public Employee selectEmployeeByInput(String account,String password) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from  Employee  where account = ? and password= ?";
         Query query = session.createQuery(hql);
         query.setString(0, account);
         query.setString(1, password);
-        transaction.commit();
-        List<Employee> list = query.list();
-        if(list.size() == 0){
-            return false;
-        }else {
-            return true;
-        }
+        return (Employee) query.uniqueResult();
+
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

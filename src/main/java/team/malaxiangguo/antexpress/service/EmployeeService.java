@@ -5,17 +5,23 @@ import org.springframework.stereotype.Service;
 import team.malaxiangguo.antexpress.bean.Employee;
 import team.malaxiangguo.antexpress.dao.EmployeeDao;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
     @Autowired
     EmployeeDao employeeDao;
 
-    public Employee[] getEmployee(int employeeId) {
+    public List<Employee> getAllEmployee() {
 
-        return employeeDao.selectEmployeeById(employeeId);
+        return employeeDao.selectAllEmployee();
     }
-    public boolean getEmployee(String account,String password) {
+
+    public void deleteEmployeeById(int employeeId){
+        employeeDao.deleteEmployeeById(employeeId);
+    }
+    public Employee getEmployee(String account,String password) {
 
         return employeeDao.selectEmployeeByInput(account,password);
     }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import team.malaxiangguo.antexpress.bean.Employee;
 import team.malaxiangguo.antexpress.service.EmployeeService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class LoginController {
@@ -26,23 +28,21 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("test")
-    public String test() {
-        return "test";
-    }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam("name") String name, @RequestParam("password") String password) {
-        if (employeeService.getEmployee(name, password)) {
-            return "home";
+        Employee e = employeeService.getEmployee(name, password);
+        if (e!=null) {
+            if(e.getOccupationId()==1)
+                return "home_admin";
+            else if (e.getOccupationId()==2)
+                return "home_manager";
+            else
+                return "home_courier";
         } else {
             return "fail";
         }
     }
 
-    @RequestMapping("employee")
-    @ResponseBody
-    public Employee[] getEmployee(int employeeId) {
-        return employeeService.getEmployee(employeeId);
-    }
+
 }
