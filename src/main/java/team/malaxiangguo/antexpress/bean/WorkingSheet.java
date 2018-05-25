@@ -1,5 +1,7 @@
 package team.malaxiangguo.antexpress.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -54,7 +56,8 @@ public class WorkingSheet {
     }
 
     @Basic
-    @Column(name = "create_date_time", nullable = true)
+    @Column(name = "create_date_time", nullable = true, updatable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateDateTime() {
         return createDateTime;
     }
@@ -64,7 +67,8 @@ public class WorkingSheet {
     }
 
     @Basic
-    @Column(name = "modify_date_time", nullable = true)
+    @Column(name = "create_date_time", nullable = true, updatable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getModifyDateTime() {
         return modifyDateTime;
     }

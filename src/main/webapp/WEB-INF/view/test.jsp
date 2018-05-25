@@ -72,9 +72,9 @@
                     $.ajax({
                         type:"post",
                         url:"<%=contextPath%>/edit",
-                        dataType:"text",
-                        contentType :"application/json;charset=utf-8",
-                        data:JSON.stringify(row),
+                        dataType:"json",
+//                        contentType :"application/json;charset=utf-8",
+                        data:row,
                         success: function (data) {
                             alert("Edit Successfully");
                             $('#tb_employee').bootstrapTable('refresh', {url: '<%=contextPath%>/employee'});

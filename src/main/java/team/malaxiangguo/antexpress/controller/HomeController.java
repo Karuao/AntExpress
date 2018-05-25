@@ -32,11 +32,20 @@ public class HomeController {
         employeeService.deleteEmployeeById(employeeId);
         return "test";
     }
+//    @RequestMapping(value="edit",method = RequestMethod.POST)
+//    public String edit(@RequestBody String str) throws IOException {
+//        System.out.println("edit");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Employee employee = objectMapper.readValue(str, Employee.class);
+//        employeeService.updateEmployee(employee);
+//        return "test";
+//    }
+
     @RequestMapping(value="edit",method = RequestMethod.POST)
-    public String edit(@RequestBody String str) throws IOException {
-        System.out.println("edit");
-        ObjectMapper objectMapper = new ObjectMapper();
-        Employee employee = objectMapper.readValue(str, Employee.class);
+    public String edit(Employee employee) throws IOException {
+//        System.out.println("edit");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Employee employee = objectMapper.readValue(str, Employee.class);
         employeeService.updateEmployee(employee);
         return "test";
     }
