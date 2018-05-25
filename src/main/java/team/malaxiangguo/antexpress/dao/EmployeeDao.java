@@ -39,9 +39,13 @@ public class EmployeeDao {
         query.setString(0, account);
         query.setString(1, password);
         return (Employee) query.uniqueResult();
-
     }
-
+    public void updateEmployee(Employee e){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(e);
+        transaction.commit();
+    }
     public void setSessionFactory(SessionFactory sessionFactory) {
 
         this.sessionFactory = sessionFactory;

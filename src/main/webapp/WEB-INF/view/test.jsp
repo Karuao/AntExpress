@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="toolbar" class="btn-group">
-        <button id="btn_add" type="button" class="btn btn-default">
+        <button id="btn_add" type="button" class="btn btn-default" onclick="add()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
         </button>
         <button id="btn_edit" type="button" class="btn btn-default">
@@ -69,7 +69,6 @@
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
                 onEditableSave: function (field, row, oldValue, $el) {
-                    alert(JSON.stringify(row));
                     $.ajax({
                         type:"post",
                         url:"<%=contextPath%>/edit",
@@ -77,15 +76,19 @@
                         contentType :"application/json;charset=utf-8",
                         data:JSON.stringify(row),
                         success: function (data) {
-                            alert("成功");
+                            alert("Edit Successfully");
+                            $('#tb_employee').bootstrapTable('refresh', {url: '<%=contextPath%>/employee'});
                         }
                     });
                 },
                 columns: [{
-                    checkbox: false
+                    //checkbox: false
                 }, {
                     field: 'employeeId',
                     title: 'EmployeeId',
+                }, {
+                    field: 'account',
+                    title: 'Account',
                     editable: {
                         type: 'text',
                         validate: function (value) {
@@ -95,11 +98,16 @@
                         }
                     }
                 }, {
-                    field: 'account',
-                    title: 'Account'
-                }, {
                     field: 'password',
-                    title: 'Passwoord'
+                    title: 'Passwoord',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
                 },{
                     field: 'operate',
                     title: 'Operation',
@@ -115,7 +123,6 @@
     function operateFormatter(value, row, index) {
         return '<button id="alter"  type="button" class="btn btn-primary" style="margin-left: 15px">Alter</button>'+
             '<button id="delete"  type="button" class="btn btn-danger" style="margin-left: 15px">Delete</button>' ;
-
     }
     window.operateEvents = {
         "click #delete": function (e, value, row, index) {
@@ -126,21 +133,21 @@
                 data: row,//数据可以写{'age':10,'name':'aaa'}方式
                 success: function(result) {//返回成功后执行的函数，result是返回的数据
                     alert("Successfully Delete!");
-                    $('#tb_employee').bootstrapTable('refresh', {url: 'http://localhost:8080/employee'});
+                    $('#tb_employee').bootstrapTable('refresh', {url: '<%=contextPath%>/employee'});
                 }
             });
         }
     };
+    function add() {
 
+        $('#tb_employee').bootstrapTable('insertRow',{index: 22, row:{employeeId:34}});
+    }
     var ButtonInit = function () {
         var oInit = new Object();
         var postdata = {};
-
         oInit.Init = function () {
             //初始化页面上面的按钮事件
-
         };
-
         return oInit;
     };
 </script>

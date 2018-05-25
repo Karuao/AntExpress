@@ -14,7 +14,6 @@ public class EmployeeService {
     EmployeeDao employeeDao;
 
     public List<Employee> getAllEmployee() {
-
         return employeeDao.selectAllEmployee();
     }
 
@@ -22,7 +21,9 @@ public class EmployeeService {
         employeeDao.deleteEmployeeById(employeeId);
     }
     public Employee getEmployee(String account,String password) {
-
         return employeeDao.selectEmployeeByInput(account,password);
+    }
+    public  void updateEmployee(Employee e){
+         employeeDao.updateEmployee(e);
     }
 }
