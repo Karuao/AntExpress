@@ -9,11 +9,12 @@
 <html>
 
 <head>
+    <%String contextPath = request.getContextPath();%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/theme.css" type="text/css"> </head>
+    <link rel="stylesheet" href="<%=contextPath%>/css/theme.css" type="text/css"> </head>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css">
 <body class="border border-primary" >

@@ -9,13 +9,13 @@
 <html>
 
 <head>
+    <%String contextPath = request.getContextPath();%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/theme.css" type="text/css"> </head>
-
+    <link rel="stylesheet" href="<%=contextPath%>/css/theme.css" type="text/css"> </head>
 <body>
-<div class="py-5 h-100" style="background-image: url(/img/cover.jpg)">
+<div class="py-5 h-100" style="background-image: url(<%=contextPath%>/img/cover.jpg)">
     <div class="container">
         <div class="row">
             <div class="align-self-center col-md-6 text-white">

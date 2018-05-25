@@ -10,17 +10,18 @@
 <html>
 
 <head>
+    <%String contextPath = request.getContextPath();%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
     <meta name="description" content="Free Bootstrap 4 Pingendo Aquamarine template for unique events.">
     <meta name="keywords" content="Pingendo conference event aquamarine free template bootstrap 4">
-    <link rel="stylesheet" href="/css/aquamarine.css">
+    <link rel="stylesheet" href="<%=contextPath%>/css/aquamarine.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <!-- Script: Make my navbar transparent when the document is scrolled to top -->
-    <script src="/js/navbar-ontop.js"></script>
+    <script src="<%=contextPath%>/js/navbar-ontop.js"></script>
     <!-- Script: Animated entrance -->
-    <script src="/js/animate-in.js"></script>
+    <script src="<%=contextPath%>/js/animate-in.js"></script>
 </head>
 
 <body class="text-center">
@@ -38,7 +39,7 @@
     </div>
 </nav>
 <!-- Cover -->
-<div class="d-flex align-items-center section-aquamarine py-5 cover" style="background-image: url(/img/cover.jpg)" >
+<div class="d-flex align-items-center section-aquamarine py-5 cover" style="background-image: url(<%=contextPath%>/img/cover.jpg)" >
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-white mt-5">
@@ -56,7 +57,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/js/smooth-scroll.js"></script>
+<script src="<%=contextPath%>/js/smooth-scroll.js"></script>
 </body>
 
 </html>
