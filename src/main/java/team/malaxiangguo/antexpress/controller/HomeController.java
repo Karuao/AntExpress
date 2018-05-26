@@ -43,9 +43,7 @@ public class HomeController {
 
     @RequestMapping(value="edit",method = RequestMethod.POST)
     public String edit(Employee employee) throws IOException {
-//        System.out.println("edit");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Employee employee = objectMapper.readValue(str, Employee.class);
+//      System.out.println("edit");
         employeeService.updateEmployee(employee);
         return "test";
     }
