@@ -43,7 +43,7 @@ public class EmployeeDao {
     public void updateEmployee(Employee e){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(e);
+        session.saveOrUpdate(e);
         transaction.commit();
     }
     public void setSessionFactory(SessionFactory sessionFactory) {

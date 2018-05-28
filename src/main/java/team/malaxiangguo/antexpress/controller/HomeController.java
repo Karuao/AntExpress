@@ -1,13 +1,12 @@
 package team.malaxiangguo.antexpress.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import team.malaxiangguo.antexpress.bean.Employee;
 import team.malaxiangguo.antexpress.service.EmployeeService;
-
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -46,6 +45,20 @@ public class HomeController {
 //      System.out.println("edit");
         employeeService.updateEmployee(employee);
         return "test";
+    }
+    @RequestMapping(value="getMaxIdAndNum",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Integer> getMaxIdAndNum(){
+        List<Integer> list = new ArrayList<>();
+        int maxId = 0;
+        int maxNum = 0;
+        for (Employee e :employeeService.getAllEmployee()){
+            maxId = e.getEmployeeId();
+            maxNum++;
+        }
+        list.add(maxNum);
+        list.add(maxId);
+        return list;
     }
 
 }

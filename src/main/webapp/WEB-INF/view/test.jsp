@@ -15,12 +15,6 @@
         <button id="btn_add" type="button" class="btn btn-default" onclick="add()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
         </button>
-        <button id="btn_edit" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Alter
-        </button>
-        <button id="btn_delete" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Delete
-        </button>
     </div>
     <table id="tb_employee"></table>
 </div>
@@ -76,7 +70,6 @@
 //                      contentType :"application/json;charset=utf-8",
                         data:row,
                         success: function (data) {
-                            alert("Edit Successfully");
                             $('#tb_employee').bootstrapTable('refresh', {url: '<%=contextPath%>/employee'});
                         }
                     });
@@ -121,15 +114,14 @@
     };
 
     function operateFormatter(value, row, index) {
-        return '<button id="alter"  type="button" class="btn btn-primary" style="margin-left: 15px">Alter</button>'+
-            '<button id="delete"  type="button" class="btn btn-danger" style="margin-left: 15px">Delete</button>' ;
+        return '<button id="delete"  type="button" class="btn btn-danger" style="margin-left: 15px">Delete</button>' ;
     }
     window.operateEvents = {
         "click #delete": function (e, value, row, index) {
             $.ajax({
                 type: 'post',//提交方式，，post get...
                 dataType : "text",//数据传输格式
-                url: "/delete",//访问服务器后台的url
+                url: "<%=contextPath%>/delete",//访问服务器后台的url
                 data: row,//数据可以写{'age':10,'name':'aaa'}方式
                 success: function(result) {//返回成功后执行的函数，result是返回的数据
                     alert("Successfully Delete!");
@@ -139,8 +131,19 @@
         }
     };
     function add() {
+        $.ajax({
+            type: 'post',//提交方式，，post get...
+            dataType : "json",//数据传输格式
+            url: "<%=contextPath%>/getMaxIdAndNum",//访问服务器后台的url
+            success: function(result) {//返回成功后执行的函数，result是返回的数据
+                //result[0]代表记录数，result[1]代表记录中最大的id值
+                //(result[0]-result[0]%10)/10+1:计算最后一页的下标
+                page = (result[0]-result[0]%10)/10+1;
+                $('#tb_employee').bootstrapTable('selectPage',page);
+                $('#tb_employee').bootstrapTable('insertRow',{index:result[0]+1, row:{employeeId:result[1]+1}});
+            }
+        });
 
-        $('#tb_employee').bootstrapTable('insertRow',{index: 22, row:{employeeId:34}});
     }
     var ButtonInit = function () {
         var oInit = new Object();
