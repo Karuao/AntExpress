@@ -16,8 +16,8 @@ public class Employee {
     private Integer salary;
     private Integer departmentId;
     private Integer occupationId;
-    private Timestamp createTimestampTime;
-    private Timestamp modifyTimestampTime;
+    private Timestamp createDateTime;
+    private Timestamp modifyDateTime;
 
     @Id
     @Column(name = "employee_id", nullable = false)
@@ -110,25 +110,25 @@ public class Employee {
     }
 
     @Basic
-    @Column(name = "create_date_time", nullable = true, updatable = false,insertable = false)
+    @Column(name = "create_date_time", nullable = true, updatable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Timestamp getCreateTimestampTime() {
-        return createTimestampTime;
+    public Timestamp getCreateDateTime() {
+        return createDateTime;
     }
 
-    public void setCreateTimestampTime(Timestamp createTimestampTime) {
-        this.createTimestampTime = createTimestampTime;
+    public void setCreateDateTime(Timestamp createDateTime) {
+        this.createDateTime = createDateTime;
     }
 
     @Basic
-    @Column(name = "modify_date_time", nullable = true, updatable = false,insertable = false)
+    @Column(name = "modify_date_time", nullable = true, updatable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Timestamp getModifyTimestampTime() {
-        return modifyTimestampTime;
+    public Timestamp getModifyDateTime() {
+        return modifyDateTime;
     }
 
-    public void setModifyTimestampTime(Timestamp modifyTimestampTime) {
-        this.modifyTimestampTime = modifyTimestampTime;
+    public void setModifyDateTime(Timestamp modifyDateTime) {
+        this.modifyDateTime = modifyDateTime;
     }
 
     @Override
@@ -149,9 +149,9 @@ public class Employee {
             return false;
         if (occupationId != null ? !occupationId.equals(employee.occupationId) : employee.occupationId != null)
             return false;
-        if (createTimestampTime != null ? !createTimestampTime.equals(employee.createTimestampTime) : employee.createTimestampTime != null)
+        if (createDateTime != null ? !createDateTime.equals(employee.createDateTime) : employee.createDateTime != null)
             return false;
-        if (modifyTimestampTime != null ? !modifyTimestampTime.equals(employee.modifyTimestampTime) : employee.modifyTimestampTime != null)
+        if (modifyDateTime != null ? !modifyDateTime.equals(employee.modifyDateTime) : employee.modifyDateTime != null)
             return false;
 
         return true;
@@ -168,8 +168,8 @@ public class Employee {
         result = 31 * result + (salary != null ? salary.hashCode() : 0);
         result = 31 * result + (departmentId != null ? departmentId.hashCode() : 0);
         result = 31 * result + (occupationId != null ? occupationId.hashCode() : 0);
-        result = 31 * result + (createTimestampTime != null ? createTimestampTime.hashCode() : 0);
-        result = 31 * result + (modifyTimestampTime != null ? modifyTimestampTime.hashCode() : 0);
+        result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
+        result = 31 * result + (modifyDateTime != null ? modifyDateTime.hashCode() : 0);
         return result;
     }
 }
