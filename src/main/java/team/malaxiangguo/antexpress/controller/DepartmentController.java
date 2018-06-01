@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.malaxiangguo.antexpress.bean.Department;
-import team.malaxiangguo.antexpress.bean.Employee;
-import team.malaxiangguo.antexpress.bean.ExpressDeliveryBill;
 import team.malaxiangguo.antexpress.service.DepartmentService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/department")
 public class DepartmentController {
 
     @Autowired
@@ -22,6 +20,12 @@ public class DepartmentController {
     @RequestMapping(value = "")
     public String management() {
         return "department";
+    }
+
+    @RequestMapping(value = "search")
+    @ResponseBody
+    public List<Department> search() {
+        return departmentService.searchDepartment();
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
@@ -34,16 +38,7 @@ public class DepartmentController {
     @RequestMapping(value = "getMaxIdAndNum", method = RequestMethod.POST)
     @ResponseBody
     public List<Integer> getMaxIdAndNum() {
-        List<Integer> list = new ArrayList<>();
-        int maxId = 0;
-        int maxNum = 0;
-        for (Department department : departmentService.searchDepartment()) {
-            maxId = department.getDepartmentId();
-            maxNum++;
-        }
-        list.add(maxNum);
-        list.add(maxId);
-        return list;
+        return departmentService.getMaxIntegerAndNum();
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)

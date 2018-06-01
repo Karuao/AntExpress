@@ -61,7 +61,7 @@
                 }, {
                     field: 'introduce',
                     title: 'Introduce'
-                }{
+                }, {
                     title: 'Operation',
                     align: 'center',
                     events: operateEvents,
@@ -90,5 +90,20 @@
             });
         }
     };
+
+    function add() {
+        $.ajax({
+            type: 'post',//提交方式，，post get...
+            dataType: "json",//数据传输格式
+            url: "<%=pagePath%>/getMaxIdAndNum",//访问服务器后台的url
+            success: function (result) {//返回成功后执行的函数，result是返回的数据
+                //result[0]代表记录数，result[1]代表记录中最大的id值
+                //(result[0]-result[0]%10)/10+1:计算最后一页的下标
+                page = (result[0] - result[0] % 10) / 10 + 1;
+                $('#tb_employee').bootstrapTable('selectPage', page);
+                $('#tb_employee').bootstrapTable('insertRow', {index: result[0] + 1, row: {employeeId: result[1] + 1}});
+            }
+        });
+    }
 </script>
 </html>
