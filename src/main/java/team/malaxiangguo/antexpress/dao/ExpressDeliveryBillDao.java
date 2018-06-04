@@ -17,11 +17,11 @@ public class ExpressDeliveryBillDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatus(String staus) {
+    public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatus(String status) {
         List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from ExpressDeliveryBill e where e.status = '" + staus + "'";
+        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "'";
         Query q = session.createQuery(hql);
         expressDeliveryBillList = q.list();
         transaction.commit();

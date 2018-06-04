@@ -19,7 +19,7 @@ public class DispatchBillController {
 
     @RequestMapping(value = "")
     public String management() {
-        return "dispatch_bill_management";
+        return "dispatch_bill";
     }
 
     @RequestMapping(value = "search")

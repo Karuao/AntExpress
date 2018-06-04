@@ -58,7 +58,7 @@ public class Outlet {
     }
 
     @Basic
-    @Column(name = "create_date_time", nullable = true, updatable = false)
+    @Column(name = "create_date_time", nullable = true, updatable = false, insertable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateDateTime() {
         return createDateTime;
@@ -69,7 +69,7 @@ public class Outlet {
     }
 
     @Basic
-    @Column(name = "modify_date_time", nullable = true, updatable = false)
+    @Column(name = "modify_date_time", nullable = true, updatable = false, insertable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getModifyDateTime() {
         return modifyDateTime;

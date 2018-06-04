@@ -28,6 +28,13 @@ public class DepartmentController {
         return departmentService.searchDepartment();
     }
 
+    @RequestMapping(value="edit",method = RequestMethod.POST)
+    @ResponseBody
+    public String edit(Department department){
+        departmentService.saveOrUpdateDepartment(department);
+        return "success";
+    }
+
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     public String delete(Department department) {
@@ -39,12 +46,5 @@ public class DepartmentController {
     @ResponseBody
     public List<Integer> getMaxIdAndNum() {
         return departmentService.getMaxIntegerAndNum();
-    }
-
-    @RequestMapping(value = "update", method = RequestMethod.POST)
-    @ResponseBody
-    public String update(Department department) {
-        departmentService.saveOrUpdateDepartment(department);
-        return "success";
     }
 }

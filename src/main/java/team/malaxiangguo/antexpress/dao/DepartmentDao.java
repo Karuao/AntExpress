@@ -7,7 +7,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import team.malaxiangguo.antexpress.bean.Department;
-import team.malaxiangguo.antexpress.bean.ExpressDeliveryBill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class DepartmentDao {
     public void saveOrUpdateDepartment(Department department) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(department);
+        session.saveOrUpdate(department);
         transaction.commit();
     }
 

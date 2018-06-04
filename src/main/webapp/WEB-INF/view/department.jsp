@@ -55,12 +55,39 @@
                 showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "<%=pagePath%>/edit",
+                        dataType: "text",
+                        data: row,
+                        success: function (data) {
+                            <%--$('#tb_department').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
+                        }
+                    });
+                },
                 columns: [{
                     field: 'name',
-                    title: 'Name'
+                    title: 'Name',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
                 }, {
-                    field: 'introduce',
-                    title: 'Introduce'
+                    field: 'introduction',
+                    title: 'Introduction',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
                 }, {
                     title: 'Operation',
                     align: 'center',
@@ -100,8 +127,11 @@
                 //result[0]代表记录数，result[1]代表记录中最大的id值
                 //(result[0]-result[0]%10)/10+1:计算最后一页的下标
                 page = (result[0] - result[0] % 10) / 10 + 1;
-                $('#tb_employee').bootstrapTable('selectPage', page);
-                $('#tb_employee').bootstrapTable('insertRow', {index: result[0] + 1, row: {employeeId: result[1] + 1}});
+                $('#tb_department').bootstrapTable('selectPage', page);
+                $('#tb_department').bootstrapTable('insertRow', {
+                    index: result[0] + 1,
+                    row: {departmentId: result[1] + 1}
+                });
             }
         });
     }
