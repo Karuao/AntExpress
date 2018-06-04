@@ -22,14 +22,14 @@ public class HomeController {
         return employeeService.getAllEmployee();
     }
 
-    @RequestMapping("test")
+    @RequestMapping("emp_manager")
     public String test() {
-        return "test";
+        return "emp_manager";
     }
     @RequestMapping(value="delete",method = RequestMethod.POST )
     public String delete(@RequestParam("employeeId") int employeeId) {
         employeeService.deleteEmployeeById(employeeId);
-        return "test";
+        return "emp_manager";
     }
 //    @RequestMapping(value="edit",method = RequestMethod.POST)
 //    public String edit(@RequestBody String str) throws IOException {
@@ -44,7 +44,7 @@ public class HomeController {
     public String edit(Employee employee){
 //      System.out.println("edit");
         employeeService.updateEmployee(employee);
-        return "test";
+        return "emp_manager";
     }
     @RequestMapping(value="getMaxIdAndNum",method = RequestMethod.POST)
     @ResponseBody

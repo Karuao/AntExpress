@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.malaxiangguo.antexpress.bean.Employee;
+import team.malaxiangguo.antexpress.bean.ExpressDeliveryBill;
 import team.malaxiangguo.antexpress.service.EmployeeService;
 
 import java.util.List;
@@ -28,7 +29,6 @@ public class LoginController {
         return "login";
     }
 
-
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam("name") String name, @RequestParam("password") String password) {
         Employee e = employeeService.getEmployee(name, password);
@@ -44,5 +44,15 @@ public class LoginController {
         }
     }
 
+    @RequestMapping(value = "delivery", method = RequestMethod.GET)
+    public String toDelivery() {
+        return "delivery";
+    }
+
+    @RequestMapping(value = "delivery", method = RequestMethod.POST)
+    public String Delivery(ExpressDeliveryBill e) {
+
+        return "delivery";
+    }
 
 }

@@ -46,7 +46,7 @@
                 <h1 class="display-2 d-none d-md-block">AntExpress System</h1>
                 <h1 class="display-4 d-block d-md-none">Conference Pingendo</h1>
                 <p class="">June 12-18, NYC </p>
-                <a href="#" class="btn btn-lg mt-4 btn-outline-light">Delivery Now
+                <a href="delivery" class="btn btn-lg mt-4 btn-outline-light">Delivery Now
                     <br>
                 </a>
                 <i class="d-block fa fa-angle-down pt-5 fa-3x"></i>

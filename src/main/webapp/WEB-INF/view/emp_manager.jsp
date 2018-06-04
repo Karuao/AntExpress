@@ -75,8 +75,6 @@
                     });
                 },
                 columns: [{
-                    //checkbox: false
-                }, {
                     field: 'employeeId',
                     title: 'EmployeeId',
                 }, {

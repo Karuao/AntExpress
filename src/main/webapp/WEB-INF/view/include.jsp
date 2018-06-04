@@ -6,6 +6,6 @@
 <script src="<%=contextPath%>/js/jquery.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap-table.min.js"></script>
-<script src="<%=contextPath%>/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="<%=contextPath%>/js/bootstrap-table-en-US.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap-editable.min.js"></script>
 <script src="<%=contextPath%>/js/bootstrap-table-editable.min.js"></script>
