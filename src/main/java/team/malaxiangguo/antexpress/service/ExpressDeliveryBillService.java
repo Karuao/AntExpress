@@ -21,6 +21,9 @@ public class ExpressDeliveryBillService {
     public void delete(ExpressDeliveryBill expressDeliveryBill) {
         expressDeliveryBillDao.deleteExpressDeliveryBill(expressDeliveryBill);
     }
+    public void save(ExpressDeliveryBill expressDeliveryBill) {
+        expressDeliveryBillDao.saveExpressDeliveryBill(expressDeliveryBill);
+    }
 
     public void agreeDispatchBill(ExpressDeliveryBill expressDeliveryBill) {
         expressDeliveryBill.setStatus(Constant.NORMAL_BILL);

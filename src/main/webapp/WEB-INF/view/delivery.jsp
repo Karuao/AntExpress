@@ -84,14 +84,14 @@
                         <hr class="bg-primary"> </div>
                     <div class="form-group">
                         <label>Receiver Name</label>
-                        <input type="text" class="form-control" placeholder="Please Enter Receiver Name"> </div>
+                        <input name="receiverName" type="text" class="form-control" placeholder="Please Enter Receiver Name"> </div>
                     <div class="form-group">
                         <label>Receiver PhoneNumber</label>
-                        <input type="" class="form-control" placeholder="Please Enter Receiver PhoneNumber"> </div>
+                        <input name="receiverPhoneNo" type="text" class="form-control" placeholder="Please Enter Receiver PhoneNumber"> </div>
                     <div class="form-group">
                         <label >Receiver Address:</label>
                         <div class="btn-group">
-                            <select id="receiverSelect" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Select District
+                            <select name="receiverAddress" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Select District
                                 <option class="dropdown-item" value="Shinan District" style="background: white">
                                     Shinan District
                                 </option>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="form-group">
                         <label>Receiver Detailed Address</label>
-                        <input type="text" class="form-control" placeholder="Please Enter Receiver Detailed Address"> </div>
+                        <input name="receiverDetailedAddress" type="text" class="form-control" placeholder="Please Enter Receiver Detailed Address"> </div>
                     <button type="submit" class="btn btn-lg btn-primary bg-gradient">Submit</button>
                 </form>
             </div>

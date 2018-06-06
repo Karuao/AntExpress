@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<%=contextPath%>/css/theme.css" type="text/css">
 
 </head>
+
 <body class="border border-primary" >
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">

@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import team.malaxiangguo.antexpress.bean.Employee;
 import team.malaxiangguo.antexpress.bean.ExpressDeliveryBill;
 import team.malaxiangguo.antexpress.service.EmployeeService;
+import team.malaxiangguo.antexpress.service.ExpressDeliveryBillService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/")
@@ -19,7 +22,8 @@ public class LoginController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping("/")
+
+    @RequestMapping(value = {"/","index"})
     public String index() {
         return "index";
     }
@@ -30,12 +34,14 @@ public class LoginController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@RequestParam("name") String name, @RequestParam("password") String password) {
+    public String login(@RequestParam("name") String name, @RequestParam("password") String password,HttpSession session) {
         Employee e = employeeService.getEmployee(name, password);
-        if (e!=null) {
-            if(e.getOccupationId()==1)
+        if (e != null) {
+            session.setAttribute("employeeId",e.getEmployeeId());
+            session.setAttribute("departmentId",e.getDepartmentId());
+            if (e.getOccupationId() == 1)
                 return "home_admin";
-            else if (e.getOccupationId()==2)
+            else if (e.getOccupationId() == 2)
                 return "home_manager";
             else
                 return "home_courier";
@@ -43,16 +49,4 @@ public class LoginController {
             return "fail";
         }
     }
-
-    @RequestMapping(value = "delivery", method = RequestMethod.GET)
-    public String toDelivery() {
-        return "delivery";
-    }
-
-    @RequestMapping(value = "delivery", method = RequestMethod.POST)
-    public String Delivery(ExpressDeliveryBill e) {
-
-        return "delivery";
-    }
-
 }

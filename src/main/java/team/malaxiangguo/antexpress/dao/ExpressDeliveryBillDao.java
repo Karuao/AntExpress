@@ -41,4 +41,11 @@ public class ExpressDeliveryBillDao {
         session.update(expressDeliveryBill);
         transaction.commit();
     }
+
+    public void saveExpressDeliveryBill(ExpressDeliveryBill expressDeliveryBill) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(expressDeliveryBill);
+        transaction.commit();
+    }
 }
