@@ -9,7 +9,7 @@
 <%String pagePath = request.getContextPath() + "/dispatchbill";%>
 <html>
 <head>
-    <title>Invoice Management</title>
+    <title>Dispath Bill Management</title>
 </head>
 <body>
 <table id="tb_dispatch_bill"></table>

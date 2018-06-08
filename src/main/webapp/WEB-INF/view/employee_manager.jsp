@@ -1,15 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: 11602
-  Date: 2018/5/30
-  Time: 17:13
+  Date: 2018/6/7
+  Time: 14:36
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
-<%String pagePath = request.getContextPath() + "/department";%>
+<%String pagePath = request.getContextPath() + "/employeemanager";%>
+<%int departmentId = (int) session.getAttribute("departmentId");%>
 <html>
 <head>
-    <title>Department Management</title>
+    <title>Employee Management</title>
 </head>
 <body>
 <div id="toolbar" class="btn-group">
@@ -17,7 +18,7 @@
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
     </button>
 </div>
-<table id="tb_department"></table>
+<table id="tb_employee"></table>
 </body>
 <script>
     $(function () {
@@ -30,8 +31,8 @@
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
-            $('#tb_department').bootstrapTable({
-                url: '<%=pagePath%>/search',          //请求后台的URL（*）
+            $('#tb_employee').bootstrapTable({
+                url: '<%=pagePath%>/search?departmentId=<%=departmentId%>',          //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -51,7 +52,7 @@
                 minimumCountColumns: 2,             //最少允许的列数
                 clickToSelect: false,                //是否启用点击选中行
                 height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "expressDeliveryBillId",                     //每一行的唯一标识，一般为主键列
+                uniqueId: "employeeId",                     //每一行的唯一标识，一般为主键列
                 showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
@@ -62,13 +63,13 @@
                         dataType: "text",
                         data: row,
                         success: function (data) {
-                            <%--$('#tb_department').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
+                            <%--$('#tb_employee').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
                         }
                     });
                 },
                 columns: [{
-                    field: 'name',
-                    title: 'Name',
+                    field: 'account',
+                    title: 'Account',
                     editable: {
                         type: 'text',
                         validate: function (value) {
@@ -78,8 +79,8 @@
                         }
                     }
                 }, {
-                    field: 'introduction',
-                    title: 'Introduction',
+                    field: 'password',
+                    title: 'Password',
                     editable: {
                         type: 'text',
                         validate: function (value) {
@@ -88,9 +89,60 @@
                             }
                         }
                     }
+                }, {
+                    field: 'gender',
+                    title: 'Gender',
+                    editable: {
+                        type: 'select',
+                        source: [
+                            {value: 'Male', text: 'Male'},
+                            {value: 'Female', text: 'Female'}
+                        ]
+                    }
+                }, {
+                    field: 'phoneNo',
+                    title: 'Phone',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
+                    field: 'email',
+                    title: 'Email',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
+                    field: 'salary',
+                    title: 'Salary',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
+                    field: 'departmentId',
+                    title: 'Department',
+                    formatter: departmentFormatter
+                }, {
+                    field: 'occupationId',
+                    title: 'Occupation',
+                    formatter: occupationFormatter
                 }, {
                     title: 'Operation',
-                    align: 'center',
+                    algin: 'center',
                     events: operateEvents,
                     formatter: operateFormatter
                 }]
@@ -103,6 +155,34 @@
         return '<button id="delete"  type="button" class="btn btn-danger" style="margin-left: 15px">Delete</button>';
     }
 
+    function departmentFormatter(value, row, index, field) {
+        switch (value) {
+            case 1:
+                return 'Shinan District Division';
+            case 2:
+                return 'Shibei District Division';
+            case 3:
+                return 'Laoshan District Division';
+            case 4:
+                return 'Licang District Division';
+            case 5:
+                return 'Chengyang District Division';
+            case 6:
+                return 'Head Office';
+        }
+    }
+
+    function occupationFormatter(value, row, index, field) {
+        switch (value) {
+            case 1:
+                return 'CEO';
+            case 2:
+                return 'Division Manager';
+            case 3:
+                return 'Curior';
+        }
+    }
+
     window.operateEvents = {
         "click #delete": function (e, value, row, index) {
             $.ajax({
@@ -112,7 +192,7 @@
                 data: row,//数据可以写{'age':10,'name':'aaa'}方式
                 success: function (result) {//返回成功后执行的函数，result是返回的数据
                     alert("Successfully Deleted!");
-                    $('#tb_department').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});
+                    $('#tb_employee').bootstrapTable('refresh', {url: '<%=pagePath%>/search?departmentId=<%=departmentId%>'});
                 }
             });
         }
@@ -127,10 +207,10 @@
                 //result[0]代表记录数，result[1]代表记录中最大的id值
                 //(result[0]-result[0]%10)/10+1:计算最后一页的下标
                 page = (result[0] - result[0] % 10) / 10 + 1;
-                $('#tb_department').bootstrapTable('selectPage', page);
-                $('#tb_department').bootstrapTable('insertRow', {
+                $('#tb_employee').bootstrapTable('selectPage', page);
+                $('#tb_employee').bootstrapTable('insertRow', {
                     index: result[0] + 1,
-                    row: {departmentId: result[1] + 1}
+                    row: {employeeId: result[1] + 1, departmentId: 2, occupationId: 3}
                 });
             }
         });

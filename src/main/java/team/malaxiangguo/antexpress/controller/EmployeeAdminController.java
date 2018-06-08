@@ -5,46 +5,46 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import team.malaxiangguo.antexpress.bean.Department;
-import team.malaxiangguo.antexpress.service.DepartmentService;
+import team.malaxiangguo.antexpress.bean.Employee;
+import team.malaxiangguo.antexpress.service.EmployeeService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/department")
-public class DepartmentController {
+@RequestMapping("employeeadmin")
+public class EmployeeAdminController {
 
     @Autowired
-    DepartmentService departmentService;
+    EmployeeService employeeService;
 
-    @RequestMapping(value = "")
+    @RequestMapping("")
     public String management() {
-        return "department";
+        return "employee_admin";
     }
 
-    @RequestMapping(value = "search")
+    @RequestMapping("search")
     @ResponseBody
-    public List<Department> search() {
-        return departmentService.searchDepartment();
+    public List<Employee> search() {
+        return employeeService.searchEmployeeAdmin();
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     @ResponseBody
-    public String edit(Department department) {
-        departmentService.saveOrUpdateDepartment(department);
+    public String edit(Employee employee) {
+        employeeService.saveOrUpdateEmployee(employee);
         return "success";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(Department department) {
-        departmentService.delete(department);
+    public String delete(Employee employee) {
+        employeeService.delete(employee);
         return "success";
     }
 
     @RequestMapping(value = "getMaxIdAndNum", method = RequestMethod.POST)
     @ResponseBody
     public List<Integer> getMaxIdAndNum() {
-        return departmentService.getMaxIntegerAndNum();
+        return employeeService.getMaxIntegerAndNum();
     }
 }
