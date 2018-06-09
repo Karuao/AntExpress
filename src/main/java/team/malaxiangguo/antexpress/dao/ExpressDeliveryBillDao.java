@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import team.malaxiangguo.antexpress.bean.ExpressDeliveryBill;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -18,7 +17,7 @@ public class ExpressDeliveryBillDao {
     private SessionFactory sessionFactory;
 
     public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatus(String status) {
-        List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
+        List<ExpressDeliveryBill> expressDeliveryBillList;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from ExpressDeliveryBill e where e.status = '" + status + "'";
@@ -29,10 +28,10 @@ public class ExpressDeliveryBillDao {
     }
 
     public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatusAndSenderAddress(String status, String senderAddress) {
-        List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
+        List<ExpressDeliveryBill> expressDeliveryBillList;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.senderAddress = '" + senderAddress +"'";
+        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.senderAddress = '" + senderAddress + "'";
         Query q = session.createQuery(hql);
         expressDeliveryBillList = q.list();
         transaction.commit();
@@ -40,10 +39,21 @@ public class ExpressDeliveryBillDao {
     }
 
     public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatusAndReceiverAddress(String status, String receiverAddress) {
-        List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
+        List<ExpressDeliveryBill> expressDeliveryBillList;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.receiverAddress = '" + receiverAddress +"'";
+        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.receiverAddress = '" + receiverAddress + "'";
+        Query q = session.createQuery(hql);
+        expressDeliveryBillList = q.list();
+        transaction.commit();
+        return expressDeliveryBillList;
+    }
+
+    public List<ExpressDeliveryBill> selectExpressDeliveryBillByEmployeeIdAndWorkingSheetStatus(int employeeId, String workingSheetStatus) {
+        List<ExpressDeliveryBill> expressDeliveryBillList;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from ExpressDeliveryBill e where e.employeeId = " + employeeId + " and e.workingSheetStatus in " + workingSheetStatus;
         Query q = session.createQuery(hql);
         expressDeliveryBillList = q.list();
         transaction.commit();
@@ -64,10 +74,10 @@ public class ExpressDeliveryBillDao {
         transaction.commit();
     }
 
-    public void saveExpressDeliveryBill(ExpressDeliveryBill expressDeliveryBill) {
+    public void saveOrUpdateExpressDeliveryBill(ExpressDeliveryBill expressDeliveryBill) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(expressDeliveryBill);
+        session.saveOrUpdate(expressDeliveryBill);
         transaction.commit();
     }
 }

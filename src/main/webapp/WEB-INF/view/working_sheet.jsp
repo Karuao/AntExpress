@@ -1,22 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: 11602
-  Date: 2018/6/8
-  Time: 14:00
+  Date: 2018/6/9
+  Time: 22:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
-<%String pagePath = request.getContextPath() + "/normalbill";%>
-<%int departmentId = (int) session.getAttribute("departmentId");%>
+<%String pagePath = request.getContextPath() + "/workingsheet";%>
+<%int employeeId = (int) session.getAttribute("employeeId");%>
 <html>
 <head>
-    <title>Nomal Bill Management</title>
-    <script>
-        var outletId = 0;
-    </script>
+    <title>Working Sheet Management</title>
 </head>
 <body>
-<table id="tb_normal_bill"></table>
+<table id="tb_working_sheet"></table>
 </body>
 <script>
     $(function () {
@@ -29,8 +26,8 @@
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
-            $('#tb_normal_bill').bootstrapTable({
-                url: '<%=pagePath%>/search?departmentId=<%=departmentId%>',          //请求后台的URL（*）
+            $('#tb_working_sheet').bootstrapTable({
+                url: '<%=pagePath%>/search?employeeId=<%=employeeId%>',          //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -50,16 +47,30 @@
                 minimumCountColumns: 2,             //最少允许的列数
                 clickToSelect: false,                //是否启用点击选中行
                 height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "expressDeliveryBillId",                     //每一行的唯一标识，一般为主键列
+                uniqueId: "workingSheetId",                     //每一行的唯一标识，一般为主键列
                 showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
-                onClickCell: function (field, value, row, $element) {
-                        outletId = row.outletId;
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "<%=pagePath%>/edit",
+                        dataType: "text",
+                        data: row,
+                        success: function (data) {
+                            <%--$('#tb_department').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
+                        }
+                    });
                 },
                 columns: [{
                     field: 'trackingNo',
                     title: 'Traking No'
+                }, {
+                    field: 'receiverName',
+                    title: 'Receiver Name'
+                }, {
+                    field: 'receiverPhoneNo',
+                    title: 'Receiver Phone'
                 }, {
                     field: 'receiverAddress',
                     title: 'Receiver Address'
@@ -67,49 +78,14 @@
                     field: 'receiverDetailedAddress',
                     title: 'Receiver Detailed Address'
                 }, {
-                    field: 'outletId',
-                    title: 'Outlet',
+                    field: 'expressDeliveryPosition',
+                    title: 'Express Delivery Position',
                     editable: {
-                        type: 'select',
-                        source: function () {
-                            var data = [];
-                            $.ajax({
-                                type: 'post',
-                                async: false,
-                                url: "<%=pagePath%>/outlet",
-                                data: {
-                                    departmentId: <%=departmentId%>
-                                },
-                                success: function (result) {
-                                    $.each(result, function (key, value) {
-                                        data.push({value: value.outletId, text: value.address})
-                                    });
-                                }
-                            });
-                            return data;
-                        }
-                    }
-                }, {
-                    field: 'employeeId',
-                    title: 'Courier',
-                    editable: {
-                        type: 'select',
-                        source: function () {
-                            var data = [];
-                            $.ajax({
-                                type: 'post',
-                                async: false,
-                                url: "<%=pagePath%>/courier",
-                                data: {
-                                    outletId: outletId
-                                },
-                                success: function (result) {
-                                    $.each(result, function (key, value) {
-                                        data.push({value: value.employeeId, text: value.name})
-                                    });
-                                }
-                            });
-                            return data;
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
                         }
                     }
                 }, {
@@ -124,19 +100,19 @@
     };
 
     function operateFormatter(value, row, index) {
-        return '<button id="agree"  type="button" class="btn btn-primary" style="margin-left: 15px">Agree</button>';
+        return '<button id="revoke"  type="button" class="btn btn-primary" style="margin-left: 15px">Revoke</button>';
     }
 
     window.operateEvents = {
-        "click #agree": function (e, value, row, index) {
+        "click #revoke": function (e, value, row, index) {
             $.ajax({
                 type: 'post',//提交方式，，post get...
                 dataType: "text",//数据传输格式
-                url: "<%=pagePath%>/agree",//访问服务器后台的url
+                url: "<%=pagePath%>/revoke",//访问服务器后台的url
                 data: row,//数据可以写{'age':10,'name':'aaa'}方式
                 success: function (result) {//返回成功后执行的函数，result是返回的数据
-                    alert("Successfully Agreed!");
-                    $('#tb_normal_bill').bootstrapTable('refresh', {url: '<%=pagePath%>/search?departmentId=<%=departmentId%>'});
+                    alert("Successfully Revoked!");
+                    $('#tb_working_sheet').bootstrapTable('refresh', {url: '<%=pagePath%>/search?employeeId=<%=employeeId%>'});
                 }
             });
         }

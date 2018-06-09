@@ -19,10 +19,10 @@ public class EmployeeService {
     }
 
     public List<Employee> searchEmployeeManager(int departmentId) {
-        return employeeDao.selectEmployeeByOccupationId(departmentId, "(2, 3)");
+        return employeeDao.selectEmployeeByDepartmentIdAndOccupationId(departmentId, "(3)");
     }
 
-    public List<Employee> searchEmployeeCurior(int employeeId) {
+    public List<Employee> searchEmployeeCourier(int employeeId) {
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employeeDao.selectEmployeeByEmployeeId(employeeId));
         return employeeList;

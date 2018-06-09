@@ -11,21 +11,21 @@ import team.malaxiangguo.antexpress.service.EmployeeService;
 import java.util.List;
 
 @Controller
-@RequestMapping("employeecurior")
-public class EmployeeCuriorController {
+@RequestMapping("employeecourier")
+public class EmployeeCourierController {
 
     @Autowired
     EmployeeService employeeService;
 
     @RequestMapping("")
     public String management() {
-        return "employee_curior";
+        return "employee_courier";
     }
 
     @RequestMapping("search")
     @ResponseBody
     public List<Employee> search(int employeeId) {
-        return employeeService.searchEmployeeCurior(employeeId);
+        return employeeService.searchEmployeeCourier(employeeId);
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)

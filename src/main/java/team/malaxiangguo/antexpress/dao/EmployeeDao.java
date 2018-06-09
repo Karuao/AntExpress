@@ -17,7 +17,7 @@ public class EmployeeDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<Employee> selectEmployeeByOccupationId(int departmentId, String occupation) {
+    public List<Employee> selectEmployeeByDepartmentIdAndOccupationId(int departmentId, String occupation) {
         List<Employee> employeeList = new ArrayList<>();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();

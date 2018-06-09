@@ -31,7 +31,7 @@ public class DeliveryController {
         }
         e.setTrackingNo(str);
         e.setStatus("Dispatch Bill");
-        expressDeliveryBillService.save(e);
+        expressDeliveryBillService.saveOrUpdate(e);
         model.addAttribute("tracking_no",e.getTrackingNo());
         return "deliverySuccess";
     }

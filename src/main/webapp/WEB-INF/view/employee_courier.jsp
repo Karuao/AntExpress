@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
-<%String pagePath = request.getContextPath() + "/employeecurior";%>
+<%String pagePath = request.getContextPath() + "/employeecourier";%>
 <%int employeeId = (int) session.getAttribute("employeeId");%><html>
 <head>
     <title>Profile Modification</title>
@@ -159,7 +159,7 @@
             case 2:
                 return 'Division Manager';
             case 3:
-                return 'Curior';
+                return 'Courier';
         }
     }
 

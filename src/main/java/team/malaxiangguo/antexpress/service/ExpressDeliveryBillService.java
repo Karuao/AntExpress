@@ -22,8 +22,8 @@ public class ExpressDeliveryBillService {
         expressDeliveryBillDao.deleteExpressDeliveryBill(expressDeliveryBill);
     }
 
-    public void save(ExpressDeliveryBill expressDeliveryBill) {
-        expressDeliveryBillDao.saveExpressDeliveryBill(expressDeliveryBill);
+    public void saveOrUpdate(ExpressDeliveryBill expressDeliveryBill) {
+        expressDeliveryBillDao.saveOrUpdateExpressDeliveryBill(expressDeliveryBill);
     }
 
     public void agreeDispatchBill(ExpressDeliveryBill expressDeliveryBill) {
@@ -39,6 +39,21 @@ public class ExpressDeliveryBillService {
         expressDeliveryBill.setStatus(Constant.WORKING_BILL);
         expressDeliveryBill.setWorkingSheetStatus(Constant.NEW_WORKING_BILL_STATUS);
         expressDeliveryBill.setExpressDeliveryPosition(Constant.EXPRESS_DELIVERY_SHIPPED);
+        expressDeliveryBillDao.updateExpressDeliveryBill(expressDeliveryBill);
+    }
+
+    public List<ExpressDeliveryBill> searchWorkingSheet(int employeeId) {
+        String workingSheetStatus = "('" + Constant.NEW_WORKING_BILL_STATUS + "', '" + Constant.MODIFIED_WORKING_BILL_STATUS + "')";
+        return expressDeliveryBillDao.selectExpressDeliveryBillByEmployeeIdAndWorkingSheetStatus(employeeId, workingSheetStatus);
+    }
+
+    public void modifyWorkingSheet(ExpressDeliveryBill expressDeliveryBill) {
+        expressDeliveryBill.setWorkingSheetStatus(Constant.MODIFIED_WORKING_BILL_STATUS);
+        expressDeliveryBillDao.updateExpressDeliveryBill(expressDeliveryBill);
+    }
+
+    public void revokeWorkingSheet(ExpressDeliveryBill expressDeliveryBill) {
+        expressDeliveryBill.setWorkingSheetStatus(Constant.REVOKED_WORKING_BILL_STATUS);
         expressDeliveryBillDao.updateExpressDeliveryBill(expressDeliveryBill);
     }
 }

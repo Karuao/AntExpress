@@ -213,7 +213,7 @@
             case 2:
                 return 'Division Manager';
             case 3:
-                return 'Curior';
+                return 'Courier';
         }
     }
 

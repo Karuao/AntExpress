@@ -1,16 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: 11602
-  Date: 2018/6/4
-  Time: 17:23
+  Date: 2018/6/9
+  Time: 21:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
-<%String pagePath = request.getContextPath() + "/employeeadmin";%>
-<%int departmentId = (int) session.getAttribute("departmentId");%>
+<%String pagePath = request.getContextPath() + "/outlet";%>
 <html>
 <head>
-    <title>Employee Management</title>
+    <title>Outlet Management</title>
 </head>
 <body>
 <div id="toolbar" class="btn-group">
@@ -18,7 +17,7 @@
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
     </button>
 </div>
-<table id="tb_employee"></table>
+<table id="tb_outlet"></table>
 </body>
 <script>
     $(function () {
@@ -31,7 +30,7 @@
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
-            $('#tb_employee').bootstrapTable({
+            $('#tb_outlet').bootstrapTable({
                 url: '<%=pagePath%>/search',          //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -52,7 +51,7 @@
                 minimumCountColumns: 2,             //最少允许的列数
                 clickToSelect: false,                //是否启用点击选中行
                 height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "employeeId",                     //每一行的唯一标识，一般为主键列
+                uniqueId: "outletId",                     //每一行的唯一标识，一般为主键列
                 showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
@@ -63,78 +62,13 @@
                         dataType: "text",
                         data: row,
                         success: function (data) {
-                            <%--$('#tb_employee').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
+                            <%--$('#tb_outlet').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});--%>
                         }
                     });
                 },
                 columns: [{
-                    field: 'account',
-                    title: 'Account',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
-                }, {
-                    field: 'password',
-                    title: 'Password',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
-                }, {
-                    field: 'name',
-                    title: 'Name',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
-                }, {
-                    field: 'gender',
-                    title: 'Gender',
-                    editable: {
-                        type: 'select',
-                        source: [
-                            {value: 'Male', text: 'Male'},
-                            {value: 'Female', text: 'Female'}
-                        ]
-                    }
-                }, {
-                    field: 'phoneNo',
-                    title: 'Phone',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
-                }, {
-                    field: 'email',
-                    title: 'Email',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
-                }, {
-                    field: 'salary',
-                    title: 'Salary',
+                    field: 'address',
+                    title: 'Address',
                     editable: {
                         type: 'text',
                         validate: function (value) {
@@ -153,24 +87,12 @@
                             {value: 2, text: 'Shibei District Division'},
                             {value: 3, text: 'Laoshan District Division'},
                             {value: 4, text: 'Licang District Division'},
-                            {value: 5, text: 'Chengyang District Division'},
-                            {value: 6, text: 'Head Office'}
-                        ]
-                    }
-                }, {
-                    field: 'occupationId',
-                    title: 'Occupation',
-                    editable: {
-                        type: 'select',
-                        source: [
-                            {value: 1, text: 'CEO'},
-                            {value: 2, text: 'Division Manager'},
-                            {value: 3, text: 'Courier'},
+                            {value: 5, text: 'Chengyang District Division'}
                         ]
                     }
                 }, {
                     title: 'Operation',
-                    algin: 'center',
+                    align: 'center',
                     events: operateEvents,
                     formatter: operateFormatter
                 }]
@@ -192,7 +114,7 @@
                 data: row,//数据可以写{'age':10,'name':'aaa'}方式
                 success: function (result) {//返回成功后执行的函数，result是返回的数据
                     alert("Successfully Deleted!");
-                    $('#tb_employee').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});
+                    $('#tb_outlet').bootstrapTable('refresh', {url: '<%=pagePath%>/search'});
                 }
             });
         }
@@ -207,10 +129,10 @@
                 //result[0]代表记录数，result[1]代表记录中最大的id值
                 //(result[0]-result[0]%10)/10+1:计算最后一页的下标
                 page = (result[0] - result[0] % 10) / 10 + 1;
-                $('#tb_employee').bootstrapTable('selectPage', page);
-                $('#tb_employee').bootstrapTable('insertRow', {
+                $('#tb_outlet').bootstrapTable('selectPage', page);
+                $('#tb_outlet').bootstrapTable('insertRow', {
                     index: result[0] + 1,
-                    row: {employeeId: result[1] + 1}
+                    row: {outletId: result[1] + 1}
                 });
             }
         });
