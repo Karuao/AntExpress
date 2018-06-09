@@ -90,6 +90,17 @@
                         }
                     }
                 }, {
+                    field: 'name',
+                    title: 'Name',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
                     field: 'gender',
                     title: 'Gender',
                     editable: {
@@ -130,6 +141,29 @@
                             if ($.trim(value) == '') {
                                 return 'This value can not be empty';
                             }
+                        }
+                    }
+                }, {
+                    field: 'outletId',
+                    title: 'Outlet',
+                    editable: {
+                        type: 'select',
+                        source: function () {
+                            var data = [];
+                            $.ajax({
+                                type: 'post',
+                                async: false,
+                                url: "<%=pagePath%>/outlet",
+                                data: {
+                                    departmentId: <%=departmentId%>
+                                },
+                                success: function (result) {
+                                    $.each(result, function (key, value) {
+                                        data.push({value: value.outletId, text: value.address})
+                                    });
+                                }
+                            });
+                            return data;
                         }
                     }
                 }, {

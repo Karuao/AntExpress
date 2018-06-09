@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Title</title>
+    <script>
+        var data = [];
+    </script>
 </head>
 <body>
 <button id="getallselection" class="btn btn-primary" type="button">
@@ -34,11 +37,7 @@
             title: 'select',
             editable: {
                 type: 'select',
-                source: [ //0->无广告，1->静态不可点击，2->静态可点击，3->动态不可点击，4->动态可点击
-                    {value: 0, text: '00'},
-                    {value: 1, text: '11'},
-                    {value: 2, text: '22'}
-                ]
+                source: combobox
             }
         }, {
             field: 'name',
@@ -77,6 +76,40 @@
         return strHtml;
     }
 
+    function combobox() {
+        if (data.length != 0) {
+            return data;
+        }
+        var result1;
+        $.ajax({
+            type: 'post',//提交方式，，post get...
+            async: false,
+            dataType: "json",//数据传输格式
+            url: "<%=contextPath%>/combobox",//访问服务器后台的url
+            success: function (result) {
+//                data = result;
+//                return result;
+                result1 = result;
+            }
+        });
+        return result1;
+    }
+    
+    <%--function combobox() {--%>
+        <%--var result = [];--%>
+        <%--$.ajax({--%>
+            <%--url: '<%=contextPath%>/combobox',--%>
+            <%--async: false,--%>
+            <%--type: "get",--%>
+            <%--data: {},--%>
+            <%--success: function (data, status) {--%>
+                <%--$.each(data, function (key, value) {--%>
+                    <%--result.push({ value: value.value, text: value.text });--%>
+                <%--});--%>
+            <%--}--%>
+        <%--});--%>
+        <%--return result;--%>
+    <%--}--%>
 
     $("#getallselection").click(function () {
         var result = $('#table').bootstrapTable('getAllSelections');

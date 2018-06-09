@@ -64,4 +64,8 @@ public class EmployeeService {
     public void updateEmployee(Employee e) {
         employeeDao.updateEmployee(e);
     }
+
+    public List<Employee> searchEmployeeByOutletId(int outletId) {
+        return employeeDao.selectEmployeeByOutletId(outletId);
+    }
 }

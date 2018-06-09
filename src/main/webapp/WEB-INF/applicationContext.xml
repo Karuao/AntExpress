@@ -31,12 +31,9 @@
             <list>
                 <value>team.malaxiangguo.antexpress.bean.Department</value>
                 <value>team.malaxiangguo.antexpress.bean.Employee</value>
-                <value>team.malaxiangguo.antexpress.bean.IdentifyingCode</value>
                 <value>team.malaxiangguo.antexpress.bean.Occupation</value>
-                <value>team.malaxiangguo.antexpress.bean.OccupationPermissionMapping</value>
                 <value>team.malaxiangguo.antexpress.bean.Outlet</value>
                 <value>team.malaxiangguo.antexpress.bean.Permission</value>
-                <value>team.malaxiangguo.antexpress.bean.WorkingSheet</value>
                 <value>team.malaxiangguo.antexpress.bean.ExpressDeliveryBill</value>
             </list>
         </property>

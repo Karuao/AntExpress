@@ -19,6 +19,10 @@ public class ExpressDeliveryBill {
     private String receiverPhoneNo;
     private String receiverAddress;
     private String receiverDetailedAddress;
+    private String workingSheetStatus;
+    private String expressDeliveryPosition;
+    private Integer outletId;
+    private Integer employeeId;
     private Timestamp createDateTime;
     private Timestamp modifyDateTime;
 
@@ -133,6 +137,46 @@ public class ExpressDeliveryBill {
     }
 
     @Basic
+    @Column(name = "working_sheet_status", nullable = true, length = 45)
+    public String getWorkingSheetStatus() {
+        return workingSheetStatus;
+    }
+
+    public void setWorkingSheetStatus(String workingSheetStatus) {
+        this.workingSheetStatus = workingSheetStatus;
+    }
+
+    @Basic
+    @Column(name = "express_delivery_position", nullable = true, length = 45)
+    public String getExpressDeliveryPosition() {
+        return expressDeliveryPosition;
+    }
+
+    public void setExpressDeliveryPosition(String expressDeliveryPosition) {
+        this.expressDeliveryPosition = expressDeliveryPosition;
+    }
+
+    @Basic
+    @Column(name = "outlet_id", nullable = true)
+    public Integer getOutletId() {
+        return outletId;
+    }
+
+    public void setOutletId(Integer outletId) {
+        this.outletId = outletId;
+    }
+
+    @Basic
+    @Column(name = "employee_id", nullable = true)
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    @Basic
     @Column(name = "create_date_time", nullable = true, updatable = false, insertable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateDateTime() {
@@ -178,6 +222,12 @@ public class ExpressDeliveryBill {
             return false;
         if (receiverDetailedAddress != null ? !receiverDetailedAddress.equals(that.receiverDetailedAddress) : that.receiverDetailedAddress != null)
             return false;
+        if (workingSheetStatus != null ? !workingSheetStatus.equals(that.workingSheetStatus) : that.workingSheetStatus != null)
+            return false;
+        if (expressDeliveryPosition != null ? !expressDeliveryPosition.equals(that.expressDeliveryPosition) : that.expressDeliveryPosition != null)
+            return false;
+        if (outletId != null ? !outletId.equals(that.outletId) : that.outletId != null) return false;
+        if (employeeId != null ? !employeeId.equals(that.employeeId) : that.employeeId != null) return false;
         if (createDateTime != null ? !createDateTime.equals(that.createDateTime) : that.createDateTime != null)
             return false;
         if (modifyDateTime != null ? !modifyDateTime.equals(that.modifyDateTime) : that.modifyDateTime != null)
@@ -199,6 +249,10 @@ public class ExpressDeliveryBill {
         result = 31 * result + (receiverPhoneNo != null ? receiverPhoneNo.hashCode() : 0);
         result = 31 * result + (receiverAddress != null ? receiverAddress.hashCode() : 0);
         result = 31 * result + (receiverDetailedAddress != null ? receiverDetailedAddress.hashCode() : 0);
+        result = 31 * result + (workingSheetStatus != null ? workingSheetStatus.hashCode() : 0);
+        result = 31 * result + (expressDeliveryPosition != null ? expressDeliveryPosition.hashCode() : 0);
+        result = 31 * result + (outletId != null ? outletId.hashCode() : 0);
+        result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
         result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
         result = 31 * result + (modifyDateTime != null ? modifyDateTime.hashCode() : 0);
         return result;

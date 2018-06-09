@@ -24,8 +24,8 @@ public class DispatchBillController {
 
     @RequestMapping(value = "search")
     @ResponseBody
-    public List<ExpressDeliveryBill> search() {
-        return expressDeliveryBillService.searchDispatchBill();
+    public List<ExpressDeliveryBill> search(int departmentId) {
+        return expressDeliveryBillService.searchDispatchBill(departmentId);
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)

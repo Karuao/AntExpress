@@ -28,6 +28,28 @@ public class ExpressDeliveryBillDao {
         return expressDeliveryBillList;
     }
 
+    public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatusAndSenderAddress(String status, String senderAddress) {
+        List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.senderAddress = '" + senderAddress +"'";
+        Query q = session.createQuery(hql);
+        expressDeliveryBillList = q.list();
+        transaction.commit();
+        return expressDeliveryBillList;
+    }
+
+    public List<ExpressDeliveryBill> selectExpressDeliveryBillByStatusAndReceiverAddress(String status, String receiverAddress) {
+        List<ExpressDeliveryBill> expressDeliveryBillList = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from ExpressDeliveryBill e where e.status = '" + status + "' and e.receiverAddress = '" + receiverAddress +"'";
+        Query q = session.createQuery(hql);
+        expressDeliveryBillList = q.list();
+        transaction.commit();
+        return expressDeliveryBillList;
+    }
+
     public void deleteExpressDeliveryBill(ExpressDeliveryBill expressDeliveryBill) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();

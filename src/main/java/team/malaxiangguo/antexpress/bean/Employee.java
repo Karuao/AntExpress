@@ -10,10 +10,12 @@ public class Employee {
     private int employeeId;
     private String account;
     private String password;
+    private String name;
     private String gender;
     private String phoneNo;
     private String email;
     private Integer salary;
+    private Integer outletId;
     private Integer departmentId;
     private Integer occupationId;
     private Timestamp createDateTime;
@@ -47,6 +49,16 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 45)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -110,6 +122,16 @@ public class Employee {
     }
 
     @Basic
+    @Column(name = "outlet_id", nullable = true)
+    public Integer getOutletId() {
+        return outletId;
+    }
+
+    public void setOutletId(Integer outletId) {
+        this.outletId = outletId;
+    }
+
+    @Basic
     @Column(name = "create_date_time", nullable = true, updatable = false, insertable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Timestamp getCreateDateTime() {
@@ -162,10 +184,12 @@ public class Employee {
         int result = employeeId;
         result = 31 * result + (account != null ? account.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (phoneNo != null ? phoneNo.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (salary != null ? salary.hashCode() : 0);
+        result = 31 * result + (outletId != null ? outletId.hashCode() : 0);
         result = 31 * result + (departmentId != null ? departmentId.hashCode() : 0);
         result = 31 * result + (occupationId != null ? occupationId.hashCode() : 0);
         result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);

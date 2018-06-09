@@ -7,7 +7,7 @@
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
 <%String pagePath = request.getContextPath() + "/employeeadmin";%>
-<%int departmentId = (int)session.getAttribute("departmentId");%>
+<%int departmentId = (int) session.getAttribute("departmentId");%>
 <html>
 <head>
     <title>Employee Management</title>
@@ -81,6 +81,17 @@
                 }, {
                     field: 'password',
                     title: 'Password',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
+                    field: 'name',
+                    title: 'Name',
                     editable: {
                         type: 'text',
                         validate: function (value) {

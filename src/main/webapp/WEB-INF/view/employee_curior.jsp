@@ -76,6 +76,17 @@
                         }
                     }
                 }, {
+                    field: 'name',
+                    title: 'Name',
+                    editable: {
+                        type: 'text',
+                        validate: function (value) {
+                            if ($.trim(value) == '') {
+                                return 'This value can not be empty';
+                            }
+                        }
+                    }
+                }, {
                     field: 'gender',
                     title: 'Gender',
                     editable: {

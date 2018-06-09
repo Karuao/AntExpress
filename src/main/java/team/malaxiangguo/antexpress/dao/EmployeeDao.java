@@ -28,6 +28,18 @@ public class EmployeeDao {
         return employeeList;
     }
 
+
+    public List<Employee> selectEmployeeByOutletId(int outletId) {
+        List<Employee> employeeList = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "from Employee e where e.outletId = " + outletId;
+        Query q = session.createQuery(hql);
+        employeeList = q.list();
+        transaction.commit();
+        return employeeList;
+    }
+
     public Employee selectEmployeeByEmployeeId(int employeeId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
