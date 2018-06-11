@@ -47,10 +47,10 @@
                     <div class="col-4">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item border border-primary p-3">
-                                <a id="wor" class="active nav-link" data-toggle="pill">Working Sheet</a>
+                                <a id="wor" class="nav-link" data-toggle="pill" style="font-size:large">Working Sheet</a>
                             </li>
                             <li class="nav-item border border-primary p-3">
-                                <a id="pro"  class="nav-link" data-toggle="pill" >Profile</a>
+                                <a id="pro"  class="nav-link" data-toggle="pill" style="font-size:large">Profile</a>
                             </li>
                         </ul>
                     </div>

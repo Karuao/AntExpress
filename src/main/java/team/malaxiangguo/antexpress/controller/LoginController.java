@@ -41,7 +41,7 @@ public class LoginController {
             else
                 return "home_courier";
         } else {
-            return "fail";
+            return "redirect:login?id=-1";
         }
     }
 }

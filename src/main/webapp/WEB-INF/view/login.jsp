@@ -8,7 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%String contextPath = request.getContextPath();%>
+    <%String contextPath = request.getContextPath();
+       String id= request.getParameter("id");
+    %>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
@@ -37,6 +40,7 @@
                                 <label>Password</label>
                                 <input name="password" type="password" class="form-control" placeholder="Your password, please">
                             </div>
+                            <p id="false" style="display:none;color: red">Name Or Password Wrong</p>
                             <button type="submit" class="btn mt-2 btn-outline-dark">Login
                                 <br>
                             </button>
@@ -49,6 +53,12 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" ></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script>
+    var id =<%=id%>
+    if(id==-1){
+        document.getElementById('false').style.display='block';
+    }
+</script>
 </body>
 
 </html>

@@ -47,16 +47,16 @@
                     <div class="col-4">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item border border-primary p-3">
-                                <a id="emp" class="active nav-link" data-toggle="pill">Employee</a>
+                                <a id="emp" class="nav-link" data-toggle="pill" style="font-size:large">Employee</a>
                             </li>
                             <li class="nav-item border border-primary p-3">
-                                <a id="dep" class="nav-link"  data-toggle="pill">Department</a>
+                                <a id="dep" class="nav-link"  data-toggle="pill" style="font-size:large">Department</a>
                             </li>
                             <li class="nav-item border border-primary p-3">
-                                <a id="occ"  class="nav-link" data-toggle="pill" >Occupation</a>
+                                <a id="occ"  class="nav-link" data-toggle="pill" style="font-size:large">Occupation</a>
                             </li>
                             <li class="nav-item border border-primary p-3">
-                                <a id="out"  class="nav-link" data-toggle="pill" >Outlet</a>
+                                <a id="out"  class="nav-link" data-toggle="pill" style="font-size:large">Outlet</a>
                             </li>
                         </ul>
                     </div>

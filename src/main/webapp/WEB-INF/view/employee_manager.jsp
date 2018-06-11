@@ -241,11 +241,12 @@
                 //result[0]代表记录数，result[1]代表记录中最大的id值
                 //(result[0]-result[0]%10)/10+1:计算最后一页的下标
                 page = (result[0] - result[0] % 10) / 10 + 1;
-                $('#tb_employee').bootstrapTable('selectPage', page);
                 $('#tb_employee').bootstrapTable('insertRow', {
                     index: result[0] + 1,
                     row: {employeeId: result[1] + 1, departmentId: 2, occupationId: 3}
                 });
+                $('#tb_employee').bootstrapTable('selectPage', page);
+                $('#tb_employee').bootstrapTable('scrollTo','bottom');
             }
         });
     }
