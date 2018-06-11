@@ -34,7 +34,7 @@
                         <i class="fa d-inline fa-lg fa-envelope-o"></i> Contacts</a>
                 </li>
             </ul>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary">
+            <a class="btn navbar-btn ml-2 text-white btn-secondary"  href="/index">
                 <i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign out</a>
         </div>
     </div>
@@ -55,12 +55,15 @@
                             <li class="nav-item border border-primary p-3">
                                 <a id="occ"  class="nav-link" data-toggle="pill" >Occupation</a>
                             </li>
+                            <li class="nav-item border border-primary p-3">
+                                <a id="out"  class="nav-link" data-toggle="pill" >Outlet</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-8 border border-primary">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tabone" role="tabpanel">
-                                <iframe id="ifra" width="100%" height="80%" frameborder="0" src="<%=contextPath%>/emp_manager"></iframe>
+                                <iframe id="ifra" width="100%" height="80%" frameborder="0" src="<%=contextPath%>/employeeadmin"></iframe>
                             </div>
                         </div>
                     </div>
@@ -71,14 +74,22 @@
 </div>
 </body>
 <script>
+    //防止页面后退
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
     $('#emp').click(function () {
-        $('#ifra').attr('src','<%=contextPath%>/emp_manager')
+        $('#ifra').attr('src','<%=contextPath%>/employeeadmin')
     });
     $('#dep').click(function () {
-        $('#ifra').attr('src','<%=contextPath%>/login')
+        $('#ifra').attr('src','<%=contextPath%>/department')
     });
     $('#occ').click(function () {
-
+        $('#ifra').attr('src','<%=contextPath%>/occupation')
+    });
+    $('#out').click(function () {
+        $('#ifra').attr('src','<%=contextPath%>/outlet')
     });
 </script>
 </html>
