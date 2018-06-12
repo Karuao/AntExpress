@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#footer">
                         <i class="fa d-inline fa-lg fa-envelope-o"></i> Contacts</a>
                 </li>
             </ul>
@@ -114,13 +114,13 @@
                     <div class="form-group">
                         <label>Receiver Detailed Address</label>
                         <input name="receiverDetailedAddress" type="text" class="form-control" placeholder="Please Enter Receiver Detailed Address"> </div>
-                    <button type="submit" class="btn btn-lg btn-primary bg-gradient">Submit</button>
+                    <button type="submit" class="btn btn-lg btn-primary bg-gradient" onclick="send()">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="text-white bg-primary">
+<div id="footer" class="text-white bg-primary">
     <div class="container">
         <div class="row">
             <div class="p-4 col-md-3">
@@ -174,6 +174,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    function send() {
+        alert("Send newsletter to your email!");
+    }
+</script>
 </body>
 
 </html>

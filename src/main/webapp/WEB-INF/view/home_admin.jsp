@@ -28,13 +28,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa d-inline fa-lg fa-envelope-o"></i> Contacts</a>
-                </li>
-            </ul>
-            <a class="btn navbar-btn ml-2 text-white btn-secondary"  href="/index">
+
+            <a class="btn navbar-btn ml-2 text-white btn-secondary" href="#footer">
+                <i class="fa d-inline fa-lg fa-user-circle-o"></i> Contacts</a>
+
+            <a class="btn navbar-btn ml-2 text-white btn-secondary"  href="<%=contextPath%>/index">
                 <i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign out</a>
         </div>
     </div>
@@ -72,6 +70,55 @@
         </div>
     </div>
 </div>
+<div id="footer" class="text-white bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="p-4 col-md-3">
+                <h2 class="mb-4 text-secondary">AntExpress</h2>
+                <p class="text-white">A company for whatever you may need, from website prototyping to publishing</p>
+            </div>
+            <div class="p-4 col-md-3">
+                <h2 class="mb-4 text-secondary">Mapsite</h2>
+                <ul class="list-unstyled">
+                    <a href="#" class="text-white">Home</a>
+                    <br>
+                    <a href="#" class="text-white">About us</a>
+                    <br>
+                    <a href="#" class="text-white">Our services</a>
+                    <br>
+                    <a href="#" class="text-white">Stories</a>
+                </ul>
+            </div>
+            <div class="p-4 col-md-3">
+                <h2 class="mb-4">Contact</h2>
+                <p>
+                    <a href="tel:+246 - 542 550 5462" class="text-white">
+                        <i class="fa d-inline mr-3 text-secondary fa-phone"></i>+246 - 542 550 5462</a>
+                </p>
+                <p>
+                    <a href="mailto:info@pingendo.com" class="text-white">
+                        <i class="fa d-inline mr-3 text-secondary fa-envelope-o"></i>info@antexpress.com</a>
+                </p>
+                <p>
+                    <a href="https://goo.gl/maps/AUq7b9W7yYJ2" class="text-white" target="_blank">
+                        <i class="fa d-inline mr-3 fa-map-marker text-secondary"></i>365 Park Street, NY</a>
+                </p>
+            </div>
+            <div class="p-4 col-md-3">
+                <h2 class="mb-4 text-light">Subscribe</h2>
+                    <fieldset class="form-group text-white">
+                        <label>Get our newsletter</label>
+                        <input type="email" class="form-control" placeholder="Enter email"> </fieldset>
+                    <button class="btn btn-outline-secondary" onclick="send()">Submit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <p class="text-center text-white">© Copyright 2017 AntExpress - All rights reserved. </p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     //防止页面后退
@@ -91,5 +138,8 @@
     $('#out').click(function () {
         $('#ifra').attr('src','<%=contextPath%>/outlet')
     });
+    function send() {
+        alert("Send newsletter to your email!");
+    }
 </script>
 </html>
