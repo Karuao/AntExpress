@@ -32,7 +32,7 @@ public class OutletDao {
     }
 
     public List<Outlet> selectOutlet() {
-        List<Outlet> outletList = new ArrayList<>();
+        List<Outlet> outletList;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "from Outlet";

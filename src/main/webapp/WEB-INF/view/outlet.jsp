@@ -133,8 +133,8 @@
                     index: result[0] + 1,
                     row: {outletId: result[1] + 1}
                 });
-                $('#tb_occupation').bootstrapTable('selectPage', page);
-                $('#tb_employee').bootstrapTable('scrollTo','bottom');
+                $('#tb_outlet').bootstrapTable('selectPage', page);
+                $('#tb_outlet').bootstrapTable('scrollTo', 'bottom');
             }
         });
     }

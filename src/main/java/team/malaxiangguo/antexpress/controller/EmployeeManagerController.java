@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.malaxiangguo.antexpress.bean.Employee;
+import team.malaxiangguo.antexpress.bean.Outlet;
 import team.malaxiangguo.antexpress.service.EmployeeService;
+import team.malaxiangguo.antexpress.service.OutletService;
 
 import java.util.List;
 
@@ -16,6 +18,9 @@ public class EmployeeManagerController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    OutletService outletService;
 
     @RequestMapping(value = "")
     public String manage() {
@@ -40,6 +45,12 @@ public class EmployeeManagerController {
     public String delete(Employee employee) {
         employeeService.delete(employee);
         return "success";
+    }
+
+    @RequestMapping(value = "outlet", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Outlet> outletList(int departmentId) {
+        return outletService.searchOutletByDepartmentId(departmentId);
     }
 
     @RequestMapping(value = "getMaxIdAndNum", method = RequestMethod.POST)

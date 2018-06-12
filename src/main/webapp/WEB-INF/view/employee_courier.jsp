@@ -7,7 +7,8 @@
 --%>
 <%@ include file="/WEB-INF/view/include.jsp" %>
 <%String pagePath = request.getContextPath() + "/employeecourier";%>
-<%int employeeId = (int) session.getAttribute("employeeId");%><html>
+<%int employeeId = (int) session.getAttribute("employeeId");%>
+<html>
 <head>
     <title>Profile Modification</title>
 </head>
