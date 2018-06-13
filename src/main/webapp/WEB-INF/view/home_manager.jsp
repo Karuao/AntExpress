@@ -119,11 +119,6 @@
 </div>
 </body>
 <script>
-    //防止页面后退
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, null, document.URL);
-    });
     $('#emp').click(function () {
         $('#ifra').attr('src','<%=contextPath%>/employeemanager')
     });
