@@ -63,10 +63,10 @@
                     title: 'Sender Phone No'
                 }, {
                     field: 'senderAddress',
-                    title: 'Seceiver Address'
+                    title: 'Sender Address'
                 }, {
                     field: 'senderDetailedAddress',
-                    title: 'Seceiver Detailed Address'
+                    title: 'Sender Detailed Address'
                 }, {
                     field: 'receiverName',
                     title: 'Receiver Name'
