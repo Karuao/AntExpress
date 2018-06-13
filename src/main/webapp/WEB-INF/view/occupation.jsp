@@ -12,11 +12,11 @@
     <title>Occupation Management</title>
 </head>
 <body>
-<div id="toolbar" class="btn-group">
-    <button id="btn_add" type="button" class="btn btn-default" onclick="add()">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
-    </button>
-</div>
+<%--<div id="toolbar" class="btn-group">--%>
+<%--<button id="btn_add" type="button" class="btn btn-default" onclick="add()">--%>
+<%--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add--%>
+<%--</button>--%>
+<%--</div>--%>
 <table id="tb_occupation"></table>
 </body>
 <script>
@@ -69,14 +69,14 @@
                 columns: [{
                     field: 'name',
                     title: 'Name',
-                    editable: {
-                        type: 'text',
-                        validate: function (value) {
-                            if ($.trim(value) == '') {
-                                return 'This value can not be empty';
-                            }
-                        }
-                    }
+//                    editable: {
+//                        type: 'text',
+//                        validate: function (value) {
+//                            if ($.trim(value) == '') {
+//                                return 'This value can not be empty';
+//                            }
+//                        }
+//                    }
                 }, {
                     field: 'introduction',
                     title: 'Introduction',
@@ -88,12 +88,14 @@
                             }
                         }
                     }
-                }, {
-                    title: 'Operation',
-                    align: 'center',
-                    events: operateEvents,
-                    formatter: operateFormatter
-                }]
+                }
+//                , {
+//                    title: 'Operation',
+//                    align: 'center',
+//                    events: operateEvents,
+//                    formatter: operateFormatter
+//                }
+                ]
             });
         };
         return oTableInit;
