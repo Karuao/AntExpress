@@ -12,8 +12,8 @@
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://140.143.134.146:3306/antexpress"></property>
-        <property name="username" value="newuser"/>
-        <property name="password" value="123456"/>
+        <property name="username" value="onlinetest"/>
+        <property name="password" value="onlinetest"/>
     </bean>
 
     <!-- session factory -->
